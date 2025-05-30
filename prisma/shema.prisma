@@ -1,0 +1,27 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite" // or "postgresql" or "mysql"
+  url      = "file:./dev.db" // Change based on DB you're using
+}
+
+model Trip {
+  id             Int      @id @default(autoincrement())
+  pickupLat      Float
+  pickupLng      Float
+  destinationLat Float
+  destinationLng Float
+  distance       Float
+  estimatedPrice Float
+  status         TripStatus
+  createdAt      DateTime @default(now())
+}
+
+enum TripStatus {
+  pending
+  accepted
+  on_the_way
+  completed
+}
